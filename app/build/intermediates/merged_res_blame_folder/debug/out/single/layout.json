@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.amazego.autosolver.app-mergeDebugResources-33:/layout/activity_main.xml",
+        "source": "com.amazego.autosolver.app-main-36:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.amazego.autosolver.app-mergeDebugResources-33:/layout/overlay_bot_bubble.xml",
+        "source": "com.amazego.autosolver.app-main-36:/layout/overlay_bot_bubble.xml"
+    }
+]

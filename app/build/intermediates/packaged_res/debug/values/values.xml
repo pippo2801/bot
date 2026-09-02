@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#10B981</color>
+    <color name="background_dark">#0F172A</color>
+    <color name="ic_launcher_background">#0F172A</color>
+    <color name="primary">#2563EB</color>
+    <color name="primary_dark">#1D4ED8</color>
+    <color name="status_blue">#3B82F6</color>
+    <color name="status_green">#22C55E</color>
+    <color name="status_purple">#A855F7</color>
+    <color name="status_red">#EF4444</color>
+    <color name="status_yellow">#EAB308</color>
+    <color name="surface_border">#334155</color>
+    <color name="surface_dark">#1E293B</color>
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#94A3B8</color>
+    <string name="accessibility_service_desc">Servizio di automazione accessibilità sicuro per Amaze Go Auto Solver. Esegue tap controllati sulle frecce identificate senza permessi di root.</string>
+    <string name="app_name">Amaze Go Auto Solver</string>
+    <string name="btn_analyze_level">ANALIZZA LIVELLO</string>
+    <string name="btn_calibrate">CALIBRA</string>
+    <string name="btn_connect_screen">CONNETTI SCHERMO</string>
+    <string name="btn_import_screenshot">IMPORTA SCREENSHOT</string>
+    <string name="btn_one_step">ESEGUI UNA SOLA MOSSA</string>
+    <string name="btn_settings">IMPOSTAZIONI</string>
+    <string name="btn_solve_only">RISOLVI SENZA ESEGUIRE</string>
+    <string name="btn_start_bot">AVVIA BOT</string>
+    <string name="btn_stop">STOP</string>
+    <string name="channel_id">amazego_solver_channel</string>
+    <string name="channel_name">Amaze Go Solver Service</string>
+    <string name="status_capturing">🟡 ANALISI SCHERMO</string>
+    <string name="status_completed">✅ LIVELLO COMPLETATO</string>
+    <string name="status_error">🔴 ERRORE</string>
+    <string name="status_executing">🟣 ESECUZIONE</string>
+    <string name="status_idle">🟢 BOT PRONTO</string>
+    <string name="status_solving">🔵 RISOLUZIONE</string>
+    <string name="status_verifying">🔍 VERIFICA STATO</string>
+    <style name="Theme.AmazeGoAutoSolver" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="android:statusBarColor">@color/background_dark</item>
+        <item name="android:navigationBarColor">@color/background_dark</item>
+    </style>
+</resources>
