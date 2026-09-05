@@ -4,7 +4,10 @@ import android.graphics.Rect
 import com.amazego.autosolver.mapper.CoordinateMapper
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
+@RunWith(RobolectricTestRunner::class)
 class CoordinateMapperTest {
 
     private val mapper = CoordinateMapper()
