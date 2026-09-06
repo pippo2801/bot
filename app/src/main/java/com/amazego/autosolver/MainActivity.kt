@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+            screenCaptureManager?.release()
             val captureManager = ScreenCaptureManager(this).apply {
                 initializeProjection(result.resultCode, result.data!!)
             }

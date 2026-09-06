@@ -46,6 +46,8 @@ class ScreenCaptureManager(private val context: Context) {
      */
     @SuppressLint("WrongConstant")
     fun initializeProjection(resultCode: Int, data: Intent) {
+        release()
+
         val projectionManager = context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         mediaProjection = projectionManager.getMediaProjection(resultCode, data)
 
@@ -71,7 +73,9 @@ class ScreenCaptureManager(private val context: Context) {
         val reader = imageReader ?: return null
         var image: Image? = null
         try {
-            image = reader.acquireLatestImage() ?: reader.acquireNextImage()
+            // acquireNextImage() can block until the next frame is available.
+            // The bot loop already retries, so keep this operation non-blocking.
+            image = reader.acquireLatestImage()
             if (image == null) return null
 
             val planes = image.planes

@@ -1,6 +1,7 @@
 package com.amazego.autosolver.verifier
 
 import android.graphics.Bitmap
+import android.graphics.Rect
 import com.amazego.autosolver.cv.GameDetector
 import com.amazego.autosolver.model.Arrow
 import com.amazego.autosolver.model.BoardState
@@ -27,9 +28,10 @@ class GameStateVerifier(private val gameDetector: GameDetector = GameDetector())
     fun verifyPostMove(
         postMoveBitmap: Bitmap,
         expectedRemovedArrow: Arrow,
-        previousState: BoardState
+        previousState: BoardState,
+        customBoardBounds: Rect? = null
     ): VerificationResult {
-        val gameResult = gameDetector.processFrame(postMoveBitmap)
+        val gameResult = gameDetector.processFrame(postMoveBitmap, customBoardBounds)
 
         if (!gameResult.isGameFound) {
             return VerificationResult.Error("Impossibile rilevare il tabellone dopo la mossa.")

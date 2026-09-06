@@ -38,6 +38,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.coroutines.withContext
 
 /**
@@ -294,9 +295,16 @@ class BotService : Service() {
                     }
 
                     // Esecuzione tap non-root
-                    val tapSuccess = accessibility.performTap(move.tapScreenX, move.tapScreenY)
+                    val tapSuccess = withTimeoutOrNull(2_000L) {
+                        accessibility.performTap(move.tapScreenX, move.tapScreenY)
+                    } ?: false
                     if (!tapSuccess) {
-                        DebugLogger.log("Attenzione: dispatchGesture del tap non riuscito.")
+                        updateState(
+                            BotState.ERROR,
+                            "Tap non riuscito o servizio Accessibilità non responsivo."
+                        )
+                        hasExecutionError = true
+                        break
                     }
 
                     // Ritardo tra tap
@@ -311,7 +319,12 @@ class BotService : Service() {
                         val boardForVerification = currentBoard ?: continue
                         val targetArrow = boardForVerification.arrows.find { it.id == move.arrowId }
                         if (targetArrow != null) {
-                            val verification = verifier.verifyPostMove(postBitmap, targetArrow, boardForVerification)
+                            val verification = verifier.verifyPostMove(
+                                postMoveBitmap = postBitmap,
+                                expectedRemovedArrow = targetArrow,
+                                previousState = boardForVerification,
+                                customBoardBounds = customCalibratedBounds
+                            )
                             when (verification) {
                                 is VerificationResult.Success -> {
                                     DebugLogger.log("✓ Verifica mossa ${index + 1} OK.")
